@@ -1,0 +1,22 @@
+Name: article-api
+Host: 0.0.0.0
+Port: 9090
+
+Auth:
+  AccessSecret: uOvKLmVfztaXGpNYd4Z0I1SiT7MweJhl
+  AccessExpire: 604800
+  RefreshSecret: uOvKLmVfztaXGpNYd4Z0I1SiT7MweJhl
+  RefreshExpire: 2592000
+  RefreshAfter: 604800
+Oss:
+  Endpoint: oss-cn-shanghai.aliyuncs.com
+  AccessKeyId: LTAI5t8MKJuBojxopnk7Ytsr
+  AccessKeySecret: VYQcCXmTF4nA6MZY7ZbIttkZ1XpeSS
+  BucketName: beyond-article1
+
+ArticleRPC:
+  Etcd:
+    Hosts:
+      - 0.0.0.0:2379
+    Key: article.rpc
+  NonBlock: true

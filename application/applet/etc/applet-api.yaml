@@ -1,0 +1,19 @@
+Name: applet-api
+Host: 0.0.0.0
+Port: 8888
+Auth:
+  AccessSecret: uOvKLmVfztaXGpNYd4Z0I1SiT7MweJhl
+  AccessExpire: 604800
+  RefreshSecret: uOvKLmVfztaXGpNYd4Z0I1SiT7MweJhl
+  RefreshExpire: 2592000
+  RefreshAfter: 604800
+UserRPC:
+  Etcd:
+    Hosts:
+      - 0.0.0.0:2379
+    Key: user.rpc
+  NonBlock: true
+BizRedis:
+  Host: 0.0.0.0:6379
+  Pass:
+  Type: node
