@@ -1,5 +1,6 @@
 Name: article.rpc
 ListenOn: 0.0.0.0:8686
+Mode: test
 Etcd:
   Hosts:
     - 0.0.0.0:2379
