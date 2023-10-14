@@ -50,5 +50,5 @@ func (l *RegisterLogic) Register(in *pb.RegisterRequest) (*pb.RegisterResponse, 
 	}
 
 	return &pb.RegisterResponse{UserId: userId}, nil
-	return &pb.RegisterResponse{}, nil
+
 }

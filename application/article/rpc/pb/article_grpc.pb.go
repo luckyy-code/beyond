@@ -19,8 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Article_Publish_FullMethodName  = "/pb.Article/Publish"
-	Article_Articles_FullMethodName = "/pb.Article/Articles"
+	Article_Publish_FullMethodName       = "/pb.Article/Publish"
+	Article_Articles_FullMethodName      = "/pb.Article/Articles"
+	Article_ArticleDelete_FullMethodName = "/pb.Article/ArticleDelete"
+	Article_ArticleDetail_FullMethodName = "/pb.Article/ArticleDetail"
 )
 
 // ArticleClient is the client API for Article service.
@@ -29,6 +31,8 @@ const (
 type ArticleClient interface {
 	Publish(ctx context.Context, in *PublishRequest, opts ...grpc.CallOption) (*PublishResponse, error)
 	Articles(ctx context.Context, in *ArticlesRequest, opts ...grpc.CallOption) (*ArticlesResponse, error)
+	ArticleDelete(ctx context.Context, in *ArticleDeleteRequest, opts ...grpc.CallOption) (*ArticleDeleteResponse, error)
+	ArticleDetail(ctx context.Context, in *ArticleDetailRequest, opts ...grpc.CallOption) (*ArticleDetailResponse, error)
 }
 
 type articleClient struct {
@@ -57,12 +61,32 @@ func (c *articleClient) Articles(ctx context.Context, in *ArticlesRequest, opts 
 	return out, nil
 }
 
+func (c *articleClient) ArticleDelete(ctx context.Context, in *ArticleDeleteRequest, opts ...grpc.CallOption) (*ArticleDeleteResponse, error) {
+	out := new(ArticleDeleteResponse)
+	err := c.cc.Invoke(ctx, Article_ArticleDelete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *articleClient) ArticleDetail(ctx context.Context, in *ArticleDetailRequest, opts ...grpc.CallOption) (*ArticleDetailResponse, error) {
+	out := new(ArticleDetailResponse)
+	err := c.cc.Invoke(ctx, Article_ArticleDetail_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArticleServer is the server API for Article service.
 // All implementations must embed UnimplementedArticleServer
 // for forward compatibility
 type ArticleServer interface {
 	Publish(context.Context, *PublishRequest) (*PublishResponse, error)
 	Articles(context.Context, *ArticlesRequest) (*ArticlesResponse, error)
+	ArticleDelete(context.Context, *ArticleDeleteRequest) (*ArticleDeleteResponse, error)
+	ArticleDetail(context.Context, *ArticleDetailRequest) (*ArticleDetailResponse, error)
 	mustEmbedUnimplementedArticleServer()
 }
 
@@ -75,6 +99,12 @@ func (UnimplementedArticleServer) Publish(context.Context, *PublishRequest) (*Pu
 }
 func (UnimplementedArticleServer) Articles(context.Context, *ArticlesRequest) (*ArticlesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Articles not implemented")
+}
+func (UnimplementedArticleServer) ArticleDelete(context.Context, *ArticleDeleteRequest) (*ArticleDeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ArticleDelete not implemented")
+}
+func (UnimplementedArticleServer) ArticleDetail(context.Context, *ArticleDetailRequest) (*ArticleDetailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ArticleDetail not implemented")
 }
 func (UnimplementedArticleServer) mustEmbedUnimplementedArticleServer() {}
 
@@ -125,6 +155,42 @@ func _Article_Articles_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Article_ArticleDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ArticleDeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArticleServer).ArticleDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Article_ArticleDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArticleServer).ArticleDelete(ctx, req.(*ArticleDeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Article_ArticleDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ArticleDetailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArticleServer).ArticleDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Article_ArticleDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArticleServer).ArticleDetail(ctx, req.(*ArticleDetailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Article_ServiceDesc is the grpc.ServiceDesc for Article service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -139,6 +205,14 @@ var Article_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Articles",
 			Handler:    _Article_Articles_Handler,
+		},
+		{
+			MethodName: "ArticleDelete",
+			Handler:    _Article_ArticleDelete_Handler,
+		},
+		{
+			MethodName: "ArticleDetail",
+			Handler:    _Article_ArticleDetail_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
