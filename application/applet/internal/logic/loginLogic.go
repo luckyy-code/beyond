@@ -30,6 +30,7 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 }
 
 func (l *LoginLogic) Login(req *types.LoginRequest) (resp *types.LoginResponse, err error) {
+	//将最前面和最后面的ASCII定义的空格去掉
 	req.Mobile = strings.TrimSpace(req.Mobile)
 	if len(req.Mobile) == 0 {
 		return nil, code.LoginMobileEmpty
