@@ -44,11 +44,11 @@ func (l *ormLog) Warn(ctx context.Context, fromat string, v ...interface{}) {
 	logx.WithContext(ctx).Infof(fromat, v...)
 }
 
-func (l *ormLog) Error(ctx context.Context, fromat string, v ...interface{}) {
+func (l *ormLog) Error(ctx context.Context, format string, v ...interface{}) {
 	if l.LogLevel < logger.Error {
 		return
 	}
-	logx.WithContext(ctx).Errorf(fromat, v...)
+	logx.WithContext(ctx).Errorf(format, v...)
 }
 
 func (l *ormLog) Trace(ctx context.Context, begin time.Time, fc func() (sql string, rowsAffected int64), err error) {

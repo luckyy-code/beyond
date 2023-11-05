@@ -18,6 +18,10 @@ func main() {
 
 	var c config.Config
 	conf.MustLoad(*configFile, &c)
+	err := c.ServiceConf.SetUp()
+	if err != nil {
+		panic(err)
+	}
 
 	logx.DisableStat()
 	svcCtx := svc.NewServiceContext(c)

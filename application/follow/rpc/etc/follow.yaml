@@ -3,7 +3,7 @@ ListenOn: 0.0.0.0:8080
 Mode: test
 Etcd:
   Hosts:
-  - 0.0.0.0:2379
+  - 127.0.0.1:2379
   Key: follow.rpc
 DB:
   DataSource: "root:1234abc.@tcp(127.0.0.1:3306)/beyond_follow?parseTime=true"

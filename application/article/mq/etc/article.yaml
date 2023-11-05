@@ -12,13 +12,30 @@ ArticleKqConsumerConf:
   Name: article-cache-kq-consumer
   Brokers:
     - 127.0.0.1:9092
-  Group: group-article
-  Topic: topic-article
+  Group: topic-article-event
+  Topic: topic-article-event
   Offset: last
   Consumers: 1
   Processors: 1
-Datasource: root:1234abc.@tcp(127.0.0.1:3306)/beyond_article?parseTime=true
+Datasource: root:1234abc.@tcp(0.0.0.0:4406)/beyond_article?parseTime=true
 BizRedis:
-  Host: 0.0.0.0:6379
+  Host: 127.0.0.1:6379
   Pass:
   Type: node
+Es:
+  Addresses:
+    - http://localhost:9200/
+  Username: elastic
+  Password:
+Prometheus:
+  Host: 0.0.0.0
+  Port: 9101
+  Path: /metrics
+Telemetry:
+  Endpoint: http://127.0.0.1:14268/api/traces
+UserRPC:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    Key: user.rpc
+  NonBlock: true

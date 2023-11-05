@@ -1,12 +1,12 @@
 package logic
 
 import (
-	"beyond/application/user/rpc/user"
 	"context"
 	"encoding/json"
 
 	"beyond/application/applet/internal/svc"
 	"beyond/application/applet/internal/types"
+	"beyond/application/user/rpc/user"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -46,5 +46,5 @@ func (l *UserInfoLogic) UserInfo() (resp *types.UserInfoResponse, err error) {
 		Username: u.Username,
 		Avatar:   u.Avatar,
 	}, nil
-	return
+
 }

@@ -3,15 +3,15 @@ ListenOn: 0.0.0.0:8686
 Mode: test
 Etcd:
   Hosts:
-    - 0.0.0.0:2379
+    - 127.0.0.1:2379
   Key: article.rpc
-DataSource: root:1234abc.@tcp(127.0.0.1:3306)/beyond_article?parseTime=true
+DataSource: root:1234abc.@tcp(0.0.0.0:4406)/beyond_article?parseTime=true
   
 CacheRedis:
-  - Host: 0.0.0.0:6379
+  - Host: 127.0.0.1:6379
     Pass:
     Type: node
 BizRedis:
-  Host: 0.0.0.0:6379
+  Host: 127.0.0.1:6379
   Pass:
   Type: node
