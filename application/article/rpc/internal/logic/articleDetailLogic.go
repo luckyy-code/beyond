@@ -35,8 +35,14 @@ func (l *ArticleDetailLogic) ArticleDetail(in *pb.ArticleDetailRequest) (*pb.Art
 
 	return &pb.ArticleDetailResponse{
 		Article: &pb.ArticleItem{
-			Id:    article.Id,
-			Title: article.Title,
+			Id:          article.Id,
+			Title:       article.Title,
+			Content:     article.Content,
+			Description: article.Description,
+			Cover:       article.Cover,
+			AuthorId:    article.AuthorId,
+			LikeCount:   article.LikeNum,
+			PublishTime: article.PublishTime.Unix(),
 		},
 	}, nil
 }

@@ -36,5 +36,4 @@ func (l *FindByIdLogic) FindById(in *pb.FindByIdRequest) (*pb.FindByIdResponse, 
 		Avatar:   user.Avatar,
 	}, nil
 
-	return &pb.FindByIdResponse{}, nil
 }
