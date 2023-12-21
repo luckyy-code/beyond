@@ -4,9 +4,8 @@ import (
 	"beyond/application/article/api/internal/config"
 	"beyond/application/article/rpc/article"
 	"beyond/application/user/rpc/user"
-	"github.com/zeromicro/go-zero/zrpc"
-
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
+	"github.com/zeromicro/go-zero/zrpc"
 )
 
 const (

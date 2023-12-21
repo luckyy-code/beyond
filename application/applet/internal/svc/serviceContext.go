@@ -19,8 +19,9 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	userRPC := zrpc.MustNewClient(c.UserRPC, zrpc.WithUnaryClientInterceptor(interceptors.ClientErrorInterceptor()))
 
 	return &ServiceContext{
-		Config:   c,
-		UserRPC:  user.NewUser(userRPC),
+		Config:  c,
+		UserRPC: user.NewUser(userRPC),
+		//UserRPC:  user.NewUser(zrpc.MustNewClient(c.UserRPC)),
 		BizRedis: redis.New(c.BizRedis.Host, redis.WithPass(c.BizRedis.Pass)),
 	}
 }

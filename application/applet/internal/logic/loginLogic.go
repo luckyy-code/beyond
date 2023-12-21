@@ -7,6 +7,7 @@ import (
 	"beyond/pkg/jwt"
 	"beyond/pkg/xcode"
 	"context"
+	"github.com/pkg/errors"
 	"strings"
 
 	"beyond/application/applet/internal/svc"
@@ -47,6 +48,10 @@ func (l *LoginLogic) Login(req *types.LoginRequest) (resp *types.LoginResponse, 
 	if err != nil {
 		logx.Errorf("EncMobile mobile: %s error: %v", req.Mobile, err)
 		return nil, err
+	}
+	if l.svcCtx.UserRPC == nil {
+		logx.Errorf("UserRPC is nil")
+		return nil, errors.New("internal server error")
 	}
 	u, err := l.svcCtx.UserRPC.FindByMobile(l.ctx, &user.FindByMobileRequest{Mobile: mobile})
 	if err != nil {

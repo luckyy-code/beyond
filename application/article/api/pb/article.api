@@ -31,7 +31,7 @@ type (
 
 @server (
 	prefix: /v1/article
-	jwt: Auth
+
 )
 service article-api {
 	@handler UploadCoverHandler

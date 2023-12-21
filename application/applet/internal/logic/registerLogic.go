@@ -42,6 +42,8 @@ func (l *RegisterLogic) Register(req *types.RegisterRequest) (resp *types.Regist
 	}
 	req.Password = strings.TrimSpace(req.Password)
 	if len(req.Password) == 0 {
+		return nil, code.RegisterPasswdEmpty
+	} else {
 		req.Password = encrypt.EncPassword(req.Password)
 	}
 	req.VerificationCode = strings.TrimSpace(req.VerificationCode)
@@ -57,6 +59,10 @@ func (l *RegisterLogic) Register(req *types.RegisterRequest) (resp *types.Regist
 	if err != nil {
 		logx.Errorf("EncMobile mobile: %s error: %v", req.Mobile, err)
 		return nil, err
+	}
+	if l.svcCtx.UserRPC == nil {
+		logx.Errorf("UserRPC is nil")
+		return nil, errors.New("internal server error")
 	}
 	u, err := l.svcCtx.UserRPC.FindByMobile(l.ctx, &user.FindByMobileRequest{
 		Mobile: mobile,

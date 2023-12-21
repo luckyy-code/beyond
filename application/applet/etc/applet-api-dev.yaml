@@ -1,0 +1,16 @@
+Name: applet-api
+Host: 0.0.0.0
+Port: 81
+Auth:
+  AccessSecret: uOvKLmVfztaXGpNYd4Z0I1SiT7MweJhl
+  AccessExpire: 604800
+  RefreshSecret: uOvKLmVfztaXGpNYd4Z0I1SiT7MweJhl
+  RefreshExpire: 2592000
+  RefreshAfter: 604800
+UserRPC:
+  Target: k8s://beyond/user-rpc:9090
+  NonBlock: false
+BizRedis:
+  Host: 10.109.11.253:6379
+  Pass:
+  Type: node

@@ -28,7 +28,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: ArticleDetailHandler(serverCtx),
 			},
 		},
-		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 		rest.WithPrefix("/v1/article"),
 	)
 }

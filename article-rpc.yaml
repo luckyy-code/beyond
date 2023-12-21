@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: article-rpc
+  namespace: beyond
+  labels:
+    app: article-rpc
+spec:
+  replicas: 3
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: article-rpc
+  template:
+    metadata:
+      labels:
+        app: article-rpc
+    spec:
+      serviceAccountName: endpoints-reader
+      containers:
+      - name: article-rpc
+        image: fengjay/article-rpc:v1.0.0.3
+        ports:
+        - containerPort: 9091
+        readinessProbe:
+          tcpSocket:
+            port: 9091
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 9091
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        resources:
+          requests:
+            cpu: 200m
+            memory: 256Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
+        volumeMounts:
+        - name: timezone
+          mountPath: /etc/localtime
+      volumes:
+        - name: timezone
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Shanghai
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: article-rpc-svc
+  namespace: beyond
+spec:
+  ports:
+    - port: 9091
+      targetPort: 9091
+  selector:
+    app: article-rpc
+

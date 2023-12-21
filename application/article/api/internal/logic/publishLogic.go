@@ -58,5 +58,5 @@ func (l *PublishLogic) Publish(req *types.PublishRequest) (resp *types.PublishRe
 	}
 
 	return &types.PublishResponse{ArticleId: pret.ArticleId}, nil
-	return
+
 }

@@ -39,5 +39,4 @@ func (l *FindByMobileLogic) FindByMobile(in *pb.FindByMobileRequest) (*pb.FindBy
 		Avatar:   user.Avatar,
 	}, nil
 
-	return &pb.FindByMobileResponse{}, nil
 }

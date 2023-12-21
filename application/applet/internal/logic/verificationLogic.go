@@ -1,7 +1,6 @@
 package logic
 
 import (
-	"beyond/application/user/rpc/user"
 	"beyond/pkg/util"
 	"context"
 	"fmt"
@@ -52,13 +51,13 @@ func (l *VerificationLogic) Verification(req *types.VerificationRequest) (resp *
 	if len(code) == 0 {
 		code = util.RandomNumeric(6)
 	}
-	_, err = l.svcCtx.UserRPC.SendSms(l.ctx, &user.SendSmsRequest{
-		Mobile: req.Mobile,
-	})
-	if err != nil {
-		logx.Errorf("sendSms mobile: %s error: %v", req.Mobile, err)
-		return nil, err
-	}
+	//_, err = l.svcCtx.UserRPC.SendSms(l.ctx, &user.SendSmsRequest{
+	//	Mobile: req.Mobile,
+	//})
+	//if err != nil {
+	//	logx.Errorf("sendSms mobile: %s error: %v", req.Mobile, err)
+	//	return nil, err
+	//}
 	err = saveActivationCache(req.Mobile, code, l.svcCtx.BizRedis)
 	if err != nil {
 		logx.Errorf("saveActivationCache mobile: %s error: %v", req.Mobile, err)

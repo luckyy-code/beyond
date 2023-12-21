@@ -1,0 +1,13 @@
+Name: article-api
+Host: 0.0.0.0
+Port: 80
+ArticleRPC:
+  Target: k8s://beyond/article-rpc-svc:9091
+  NonBlock: false
+UserRPC:
+  Target: k8s://beyond/user-rpc-svc:9090
+  NonBlock: false
+Prometheus:
+  Host: 0.0.0.0
+  Port: 9101
+  Path: /metrics

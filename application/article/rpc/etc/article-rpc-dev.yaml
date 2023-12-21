@@ -1,18 +1,14 @@
 Name: article.rpc
-ListenOn: 0.0.0.0:9090
-Mode: test
-Etcd:
-  Hosts:
-    - 127.0.0.1:2379
-  Key: article.rpc
-DataSource: root:1234abc.@tcp(0.0.0.0:4406)/beyond_article?parseTime=true
-  
+ListenOn: 0.0.0.0:9091
+
+DataSource: root:123456@tcp(10.103.228.205:3306)/beyond_article?parseTime=true
+
 CacheRedis:
-  - Host: 127.0.0.1:6379
+  - Host:  10.109.106.41:6379
     Pass:
     Type: node
 BizRedis:
-  Host: 127.0.0.1:6379
+  Host:  10.109.106.41:6379
   Pass:
   Type: node
 Consul:

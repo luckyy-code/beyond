@@ -4,6 +4,7 @@ import (
 	"beyond/application/article/rpc/article"
 	"beyond/application/user/rpc/user"
 	"context"
+	"github.com/pkg/errors"
 	"strconv"
 
 	"beyond/application/article/api/internal/svc"
@@ -27,6 +28,10 @@ func NewArticleDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Art
 }
 
 func (l *ArticleDetailLogic) ArticleDetail(req *types.ArticleDetailRequest) (resp *types.ArticleDetailResponse, err error) {
+	if l.svcCtx.ArticleRPC == nil {
+		logx.Errorf("UserRPC is nil")
+		return nil, errors.New("internal server error")
+	}
 	articleInfo, err := l.svcCtx.ArticleRPC.ArticleDetail(l.ctx, &article.ArticleDetailRequest{
 		ArticleId: req.ArticleId,
 	})
