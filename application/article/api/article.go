@@ -31,11 +31,6 @@ func main() {
 	// 自定义错误处理方法
 	httpx.SetErrorHandler(xcode.ErrHandler)
 
-	//err := consul.Register(c.Consul, fmt.Sprintf("%s:%d", c.ServiceConf.Prometheus.Host, c.ServiceConf.Prometheus.Port))
-	//if err != nil {
-	//	fmt.Printf("register consul error: %v\n", err)
-	//}
-
 	fmt.Printf("Starting server at %s:%d...\n", c.Host, c.Port)
 	server.Start()
 }
