@@ -4,22 +4,16 @@ Etcd:
   Hosts:
     - 127.0.0.1:2379
   Key: user.rpc
-DataSource: root:1234abc.@tcp(0.0.0.0:4406)/beyond_user?parseTime=true
+DataSource: root:123456@tcp(0.0.0.0:3306)/beyond_user?parseTime=true
 CacheRedis:
-  - Host: 127.0.0.1:6379
+  - Host: 0.0.0.0:6379
     Pass:
     Type: node
 BizRedis:
-  Host: 127.0.0.1:6379
+  Host: 0.0.0.0:6379
   Pass:
   Type: node
-Consul:
-  Host: 127.0.0.1:8500
-  Key: user-rpc
-  Meta:
-    env: test
-    service_group: beyond
-    service_name: user-rpc
+
 Prometheus:
   Host: 0.0.0.0
   Port: 9103
