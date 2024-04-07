@@ -23,7 +23,6 @@ func (c Code) Error() string {
 
 	return strconv.Itoa(c.code)
 }
-
 func (c Code) Code() int {
 	return c.code
 }
@@ -35,7 +34,6 @@ func (c Code) Message() string {
 func (c Code) Details() []interface{} {
 	return nil
 }
-
 func String(s string) Code {
 	if len(s) == 0 {
 		return OK

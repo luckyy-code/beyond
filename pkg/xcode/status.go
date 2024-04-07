@@ -15,8 +15,6 @@ import (
 	"google.golang.org/protobuf/types/known/anypb"
 )
 
-var _ XCode = (*Status)(nil)
-
 type Status struct {
 	sts *types.Status
 }

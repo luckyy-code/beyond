@@ -6,12 +6,12 @@ Etcd:
   - 127.0.0.1:2379
   Key: follow.rpc
 DB:
-  DataSource: "root:1234abc.@tcp(0.0.0.0:4406)/beyond_follow?parseTime=true"
+  DataSource: "root:123456@tcp(0.0.0.0:3306)/beyond_follow?parseTime=true"
   MaxIdleConns: 10
   MaxOpenConns: 100
   ConnMaxLifetime: 3600
 BizRedis:
-  Host: 127.0.0.1:6379
+  Host: 0.0.0.0:6379
   Pass:
   Type: node
 Prometheus:

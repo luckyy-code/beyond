@@ -13,9 +13,9 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
-				Method:  http.MethodPost,
-				Path:    "/upload/cover",
-				Handler: UploadCoverHandler(serverCtx),
+				Method:  http.MethodGet,
+				Path:    "/detail",
+				Handler: ArticleDetailHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodPost,
@@ -23,11 +23,12 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: PublishHandler(serverCtx),
 			},
 			{
-				Method:  http.MethodGet,
-				Path:    "/detail",
-				Handler: ArticleDetailHandler(serverCtx),
+				Method:  http.MethodPost,
+				Path:    "/upload/cover",
+				Handler: UploadCoverHandler(serverCtx),
 			},
 		},
+		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
 		rest.WithPrefix("/v1/article"),
 	)
 }

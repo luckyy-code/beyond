@@ -10,7 +10,7 @@ import (
 	"github.com/zeromicro/go-zero/core/service"
 )
 
-var configFile = flag.String("f", "application/like/mq/etc/like.yaml", "the config file")
+var configFile = flag.String("f", "etc/like.yaml", "the config file")
 
 func main() {
 	flag.Parse()

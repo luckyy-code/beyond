@@ -1,14 +1,13 @@
 package main
 
 import (
+	"beyond/application/applet/internal/config"
+	"beyond/application/applet/internal/handler"
+	"beyond/application/applet/internal/svc"
 	"beyond/pkg/xcode"
 	"flag"
 	"fmt"
 	"github.com/zeromicro/go-zero/rest/httpx"
-
-	"beyond/application/applet/internal/config"
-	"beyond/application/applet/internal/handler"
-	"beyond/application/applet/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"
